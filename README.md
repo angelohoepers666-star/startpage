@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Startpage
 
 Startpage minimalista para Firefox com relógio, clima, frase do dia e links organizados por categoria.
@@ -88,7 +87,3 @@ startpage/
 ```
 
 O clima usa a API [Open-Meteo](https://open-meteo.com/) — gratuita, sem API key.
-=======
-# startpage
-Página inicial para novas abas.
->>>>>>> 1b694023fc0cc9a99c9c3169c8edd7970c619661
