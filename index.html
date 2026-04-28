@@ -126,7 +126,7 @@
 </header>
 
 <div class="search-wrap">
-  <form class="search-form" action="https://www.google.com/search" method="get" target="_blank">
+  <form class="search-form" action="https://www.google.com/search" method="get">
     <span class="search-icon">
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
         <circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.4"/>
@@ -185,6 +185,15 @@ const CATEGORIES = [
     ]
   },
   {
+    id: 'faculdade', label: 'Faculdade',
+    links: [
+      { name: 'Católica SC',    url: 'https://www.catolicasc.org.br/', icon: '🎭', color: '#e57000' },
+      { name: 'Moodle',  url: 'https://cscj.mrooms.net/login/index.php',    icon: '📚', color: '#0082c9' },
+      { name: 'Portal do Aluno',  url: 'https://portal.catolicasc.org.br/FrameHTML/web/app/edu/PortalEducacional/login/',    icon: '🧑‍🎓', color: '#0082c9' },
+      { name: 'WebMail',  url: 'https://outlook.office.com/mail/',    icon: '📧', color: '#0082c9' },
+    ]
+  },
+  {
     id: 'selfhosted', label: 'Selfhosted',
     links: [
       { name: 'Proxmox',    url: 'https://proxmox.angelohoepers.xyz', icon: '🖥️', color: '#e57000' },
@@ -192,17 +201,12 @@ const CATEGORIES = [
     ]
   },
   {
-    id: 'midias', label: 'Mídias',
+    id: 'midias', label: 'Mídias/Streamings',
     links: [
       { name: 'YouTube',     url: 'https://youtube.com',          icon: '▶️', color: '#ff0000' },
       { name: 'Reddit',      url: 'https://reddit.com',           icon: '🤖', color: '#ff4500' },
       { name: 'Twitter / X', url: 'https://x.com',                icon: '✖️', color: '#e8e8ea' },
       { name: 'Instagram',   url: 'https://instagram.com',        icon: '📸', color: '#c13584' },
-    ]
-  },
-  {
-    id: 'streamings', label: 'Streamings',
-    links: [
       { name: 'Netflix',     url: 'https://netflix.com',       icon: '🎬', color: '#e50914' },
       { name: 'Prime Video', url: 'https://primevideo.com',    icon: '📦', color: '#00a8e1' },
       { name: 'Disney+',     url: 'https://disneyplus.com',    icon: '✨', color: '#113ccf' },
@@ -253,6 +257,56 @@ const SPLASHES = [
   'BSOD às 08h47. Reunião às 09h00. Boa sorte.',
   'Licença do Office expirada. Usuário descobriu durante apresentação.',
   'Suporte remoto conectado. Usuário movendo o mouse junto.',
+  'Chamado duplicado. Ambos urgentes, claro.',
+  'Usuário sem acesso. Senha expirou há 3 meses.',
+  'Servidor reiniciado. Ninguém sabe por quê.',
+  'Rede lenta. Culpa do "sistema". Sempre.',
+  'Atualização aplicada. Novo problema desbloqueado.',
+  'Chamado encerrado. Usuário não respondeu.',
+  'Erro intermitente. Ou seja: impossível de reproduzir.',
+  'Testado em produção. Oremos.',
+  'Planilha corrompida. Backup? Que backup?',
+  'Senha anotada no post-it. Segurança nível máximo.',
+  'Sistema fora do ar. "Só aqui que não funciona?"',
+  'Deploy realizado na sexta-feira às 17:59.',
+  'Reunião para discutir a reunião do incidente.',
+  'Bug corrigido. Dois novos apareceram.',
+  'Monitor desligado. Chamado crítico aberto.',
+  'Sem evidências do erro. Usuário jura que aconteceu.',
+  'Cabo solto. Problema complexo resolvido.',
+  'Permissão negada. Acesso solicitado sem justificativa.',
+  'Erro 404: motivação não encontrada.',
+  'Troca de mouse resolveu. Diagnóstico avançado concluído.',
+  'Usuário esqueceu de salvar. Mais uma vez.',
+  'Banco de dados lento. Query sem WHERE detectada.',
+  'VPN caiu. Usuário também.',
+  'Notebook sem bateria. Trabalhando "normalmente".',
+  'Chamado reaberto. História sem fim.',
+  'Configuração padrão restaurada. Paz momentânea.',
+  'Sistema legado identificado. Ninguém quer mexer.',
+  'Acesso concedido. Problema agora é outro.',
+  'Firewall bloqueando. Como deveria.',
+  'Erro humano identificado. De qual humano?',
+  'Conectado via TeamViewer. Usuário observando em silêncio.',
+  'Atualização automática desativada. Por algum motivo.',
+  'Log analisado. Nenhuma pista encontrada.',
+  'Dispositivo desconhecido na rede. Clássico.',
+  'Planilha com macros. O perigo invisível.',
+  'Sistema lento após atualização. Coincidência?',
+  'Chamado sem descrição. Apenas "não funciona".',
+  'Servidor com uptime de 300 dias. Medo de reiniciar.',
+  'Reiniciado preventivamente. Funcionou, claro.',
+  'Usuário sem permissão de admin. Reclamação imediata.',
+  'Erro resolvido sozinho. Mistérios da TI.',
+  'Backup falhou. Notificação ignorada.',
+  'Monitor duplicado. Usuário usando só um.',
+  'Senha redefinida. Usuário esqueceu em 5 minutos.',
+  'Problema na impressora. Papel acabou.',
+  'Script rodou em produção. Sem testes prévios.',
+  'Chamado atribuído. Ninguém assumiu ainda.',
+  'Sistema instável. Café insuficiente.',
+  'Erro crítico. Solução: reiniciar serviço.',
+  'Usuário pediu urgência. Saiu para almoço.',
 ];
 
 // ═══════════════════════════════════════════════════
@@ -328,7 +382,6 @@ function hexToRgba(hex, a) {
       const a = document.createElement('a');
       a.className = 'card';
       a.href = link.url;
-      a.target = '_blank';
       a.rel = 'noopener noreferrer';
       a.innerHTML = `
         <div class="card-icon" style="background:${hexToRgba(link.color||'#e8e8ea',0.13)}">
