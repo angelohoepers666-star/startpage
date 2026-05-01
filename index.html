@@ -381,11 +381,8 @@ function hexToRgba(hex, a) {
     cat.links.forEach(link => {
       const a = document.createElement('a');
       a.className = 'card';
-      a.href = "#";
-      a.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.location.href = link.url;
-      });
+      a.href = link.url;
+      a.target = '_top';
       a.innerHTML = `
         <div class="card-icon" style="background:${hexToRgba(link.color||'#e8e8ea',0.13)}">
           <span style="font-size:18px">${link.icon||'🔗'}</span>
